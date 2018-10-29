@@ -25,7 +25,7 @@ survey.forEach(e => {
   
   $(".survey").append(q);
   e.a.forEach(i => {
-      var a = $("<inuput>")
+      var a = $("<input>")
       a.attr("type", "radio");
       a.attr("value",i);
       a.attr("name",e.q);
