@@ -1,0 +1,26 @@
+{
+  "name": "friendfinder",
+  "version": "1.0.0",
+  "description": "friendFinder BootCamp",
+  "main": "server.js",
+  "scripts": {
+    "test": "test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/wherding/FriendFinder.git"
+  },
+  "keywords": [
+    "bootcamp"
+  ],
+  "author": "will",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/wherding/FriendFinder/issues"
+  },
+  "homepage": "https://github.com/wherding/FriendFinder#readme",
+  "dependencies": {
+    "express": "4.16.4",
+    "path": "0.12.7"
+  }
+}
