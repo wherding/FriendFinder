@@ -11,7 +11,7 @@ console.log(__dirname + '/public')
 require("./app/routing/htmlRoutes")(app);
 require('./app/routing/apiRoutes')(app);
 
-app.listen(process.env.port || 8080, function(){
+app.listen(process.env.PORT || 8080, function(){
    // console.log("listening on port: " + PORT);
     console.log(__dirname + '/app');
 });
