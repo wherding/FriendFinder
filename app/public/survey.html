@@ -13,16 +13,23 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
 <script src="https://code.jquery.com/jquery.js"></script>
+<link rel="stylesheet" href="../public/style.css">
 <!--stolen cdn form example-->
   <!-- Latest compiled and minified CSS & JS -->
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
   <script src="https://code.jquery.com/jquery.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
-
+  <style>
+    #match-div {
+        background-image: url("https://www.google.com/imgres?imgurl=https%3A%2F%2Fwww.popsci.com%2Fsites%2Fpopsci.com%2Ffiles%2Fstyles%2F1000_1x_%2Fpublic%2Fimages%2F2018%2F03%2Fsenna.jpg%3Fitok%3DeYNPMGjA%26fc%3D50%2C50&imgrefurl=https%3A%2F%2Fwww.popsci.com%2Fcars-geneva-auto-show-2018&docid=oo3KPJeS7O4SzM&tbnid=y0fUu8UJXuqFHM%3A&vet=10ahUKEwit7u-6q7feAhUECnwKHbdLD_kQMwhwKAAwAA..i&w=1000&h=550&bih=938&biw=1920&q=car&ved=0ahUKEwit7u-6q7feAhUECnwKHbdLD_kQMwhwKAAwAA&iact=mrc&uact=8");
+    }
+    </style>
     <title>Survey</title>
 </head>
 <body>
     <h1>This is my Survey page!!!</h1>
+    <img src="https://www.google.com/imgres?imgurl=https%3A%2F%2Fvignette.wikia.nocookie.net%2Farcher%2Fimages%2F3%2F3f%2FSterling_Archer_Standing_POSE.png%2Frevision%2Flatest%3Fcb%3D20151123090437&imgrefurl=http%3A%2F%2Farcher.wikia.com%2Fwiki%2FSterling_Archer&docid=8qdo36zYsruFGM&tbnid=wrTPI7-gf5bMoM%3A&vet=10ahUKEwjG8Zup-bbeAhUthOAKHX1wC_gQMwhvKAAwAA..i&w=400&h=1000&bih=796&biw=1602&q=sterling%20archer&ved=0ahUKEwjG8Zup-bbeAhUthOAKHX1wC_gQMwhvKAAwAA&iact=mrc&uact=8" alt="">
+
 <!-- begin copy-->
 <div class="container">
 
@@ -180,7 +187,10 @@
         </div>
         <div class="modal-body">
           <h2 id="match-name"></h2>
-          <img id="match-img" src="https://media.licdn.com/mpr/mpr/shrinknp_400_400/p/6/005/064/1bd/3435aa3.jpg" alt="">
+          <div id="match-div" > 
+
+          </div>
+          <img id="match-img" src="" alt="" height="42px" width="42px">
         </div>
         <div class="modal-footer">
           <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
@@ -196,6 +206,11 @@
     </div>
     <script type="text/javascript">
    
+  //  function displayMatch(data){
+  //             $('#match-name').text(data.name);
+  //             $('#match-img').attr('src', data.photo);
+  //             $('#results-modal').modal('toggle'); 
+  //           }
     
     
     
@@ -242,7 +257,23 @@
             };
     
             // AJAX post the data to the friends API.
-            $.post("/api/friends", userData, function(data) {
+
+            $.ajax({
+              method: 'POST', 
+              url: '/api/friends',
+              dataType: 'jsonp',
+              data: userData,
+              //jsonpCallback: 'displayMatch'
+            }).then(data => {
+              data = JSON.parse(data);
+              console.log(data);
+              $('#match-name').text(data.name);
+              $('#match-img').attr('src', data.photo);
+              $('#results-modal').modal('toggle');
+           })
+
+
+          /*  $.post("/api/friends", userData, function(data) {
     
               // Grab the result from the AJAX post so that the best match's name and photo are displayed.
               $("#match-name").text(data.name);
@@ -252,10 +283,13 @@
               $("#results-modal").modal("toggle");
     
             });
+
+            */
           } else {
             alert("Please fill out all fields before submitting!");
-          }
+          } 
         });
+       
       </script>
 </body>
 </html>

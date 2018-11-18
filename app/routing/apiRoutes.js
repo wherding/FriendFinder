@@ -2,8 +2,11 @@ var friends = require('../data/frinds');
 
 
 module.exports = function(app){
+  //test 
+
+  //end test
     app.get('/api/friends', function(req, res){
-        res.json(friends);
+        res.jsonp(friends);
     });
 
     app.post('/api/friends', function (req, res) {
@@ -44,6 +47,6 @@ module.exports = function(app){
     
         friends.push(newFriend);
     
-        res.json(bestMatch);
+        res.jsonp(JSON.stringify(bestMatch));
       });
 };
